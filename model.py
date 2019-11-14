@@ -32,11 +32,11 @@ def set_new_position(direction, snake, board):
 
     if direction == 0:
         head_y = head_y - 1
-    if direction == 1:
+    elif direction == 1:
         head_x = head_x + 1
-    if direction == 2:
+    elif direction == 2:
         head_y = head_y + 1
-    if direction == 3:
+    elif direction == 3:
         head_x = head_x - 1
     game_over(board, coordinate = (head_x, head_y))
     board[(head_x, head_y)] = "Snakehead"
@@ -54,3 +54,5 @@ def eat_apple(board, snake, apple):
         snake.append(apple)
         return initialize_apple(board)
     return apple
+def get_score(snake):
+    return len(snake)
