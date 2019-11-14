@@ -40,7 +40,7 @@ while True:
 
     head_direction = turn(head_direction)
     apple = eat_apple(board, snake, apple)
-    set_new_position(head_direction, snake, board)
+    snake = set_new_position(head_direction, snake, board)
     screen.fill((0, 255, 0))         #kolor tablicy (ekranu gry)
 
     #kwadrat = pygame.Rect(head_x, head_y, 20, 20)       #pierwsze dwa koordynaty, to jego pozycja na początku, a drugie dwa to jego wymiary w pix

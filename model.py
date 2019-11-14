@@ -19,7 +19,15 @@ def initialize_apple(_board):
     _board[apple] = "Apple"
     return apple
 
+def game_over(board, coordinate):
+    if 0 > coordinate[0] or coordinate[0] > 19 or 0 > coordinate[1] or coordinate[1] > 19 or board[coordinate] == "Snakehead":
+        exit(2)
+
+def move_tail(snake):
+    return snake[:-1]
+
 def set_new_position(direction, snake, board):
+    move_tail((snake))
     head_x, head_y = snake[0]
     board[(head_x, head_y)] = None
     if direction == 0:
@@ -30,10 +38,15 @@ def set_new_position(direction, snake, board):
         head_y = head_y + 1
     if direction == 3:
         head_x = head_x - 1
+    game_over(board, coordinate = (head_x, head_y))
     board[(head_x, head_y)] = "Snakehead"
-    snake[0] = (head_x, head_y)
+    snake = [(head_x, head_y)] + move_tail(snake)
+    for elem in snake:
+        board[elem] = "Snakehead"
+    return snake
 
 def eat_apple(board, snake, apple):
     if snake[0] == apple:
+        snake.append(apple)
         return initialize_apple(board)
     return apple
