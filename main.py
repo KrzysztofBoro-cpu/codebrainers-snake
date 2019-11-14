@@ -1,6 +1,6 @@
 import pygame
 
-from model import initialize_snake, initialize_board, set_new_position
+from model import initialize_snake, initialize_board, set_new_position, initialize_apple, eat_apple
 from view import draw
 
 step = 20
@@ -19,6 +19,7 @@ clock = pygame.time.Clock()
 head_direction = 0
 board = initialize_board()
 snake = initialize_snake(board)
+apple = initialize_apple(board)
 
 def turn(direction):
     pressed_key = pygame.key.get_pressed()
@@ -38,6 +39,7 @@ while True:
             exit(1)
 
     head_direction = turn(head_direction)
+    apple = eat_apple(board, snake, apple)
     set_new_position(head_direction, snake, board)
     screen.fill((0, 255, 0))         #kolor tablicy (ekranu gry)
 
